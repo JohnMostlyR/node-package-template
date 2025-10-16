@@ -1,0 +1,64 @@
+{
+  "name": "node-package-template",
+  "version": "1.0.0",
+  "description": "Template for creating a Node.js package.",
+  "keywords": [
+    "template",
+    "node",
+    "typescript",
+    "unbuild",
+    "vitest",
+    "eslint",
+    "prettier"
+  ],
+  "homepage": "https://github.com/JohnMostlyR/node-package-template",
+  "bugs": {
+    "url": "https://github.com/JohnMostlyR/node-package-template/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnMostlyR/node-package-template.git"
+  },
+  "license": "MIT",
+  "author": "Johan Meester",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "clean": "git clean -xdf .cache dist node_modules",
+    "coverage": "vitest run --coverage",
+    "format": "prettier --ignore-path .gitignore --write .",
+    "lint": "eslint --fix .",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "devDependencies": {
+    "@eslint/compat": "1.4.0",
+    "@ianvs/prettier-plugin-sort-imports": "4.7.0",
+    "@types/node": "24.7.2",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "9.37.0",
+    "eslint-plugin-sonarjs": "3.0.5",
+    "prettier": "3.6.2",
+    "rimraf": "6.0.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.46.1",
+    "unbuild": "3.6.1",
+    "vitest": "3.2.4"
+  }
+}
