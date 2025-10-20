@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { includeIgnoreFile } from '@eslint/compat';
+import commentsPlugin from 'eslint-plugin-consistent-comments';
 import sonarjs from 'eslint-plugin-sonarjs';
 import tseslint from 'typescript-eslint';
 
@@ -22,8 +23,13 @@ export const config = [
         parser: tseslint.parser,
         projectService: false,
         sourceType: 'module',
-        // tsconfigRootDir: import.meta.dirname,
       },
+    },
+    plugins: {
+      comments: commentsPlugin,
+    },
+    rules: {
+      'comments/comment-style': 'error',
     },
   },
 ];
