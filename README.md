@@ -40,6 +40,8 @@ The template exposes a set of convenient npm scripts (see `package.json`):
 
 - `pnpm build` — Build with `unbuild` (outputs CJS/ESM and type declarations into `dist`).
 - `pnpm clean` — Clean untracked/build artifacts using `git clean`.
+- `pnpm deps:check` - Interactively update dependencies.
+- `pnpm deps:verify` - Run this after installing the updated dependencies.
 - `pnpm test` — Run tests once with Vitest.
 - `pnpm test:watch` — Run Vitest in watch mode for TDD.
 - `pnpm coverage` — Run tests and produce coverage reports (see `reports/coverage`).
