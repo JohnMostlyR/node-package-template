@@ -41,6 +41,8 @@
     "build": "unbuild",
     "clean": "git clean -xdf .cache dist node_modules",
     "coverage": "vitest run --coverage",
+    "deps:check": "pnpm update --interactive",
+    "deps:verify": "pnpm lint:repo && pnpm typecheck && pnpm test",
     "format": "prettier --ignore-path .gitignore --write .",
     "lint": "eslint --fix .",
     "test": "vitest run",
