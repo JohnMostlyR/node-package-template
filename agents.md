@@ -1,11 +1,11 @@
 ---
-name: "Node Package Template"
-description: "A modern Node.js package template with TypeScript, ESLint, Prettier, and Vitest. Designed for building scalable and maintainable npm packages."
-category: "Node.js Package"
-author: "Your Name"
-authorUrl: "https://github.com/yourusername"
-tags: ["node.js", "typescript", "npm", "template", "package"]
-lastUpdated: "2026-01-12"
+name: 'Node Package Template'
+description: 'A modern Node.js package template with TypeScript, ESLint, Prettier, and Vitest. Designed for building scalable and maintainable npm packages.'
+category: 'Node.js Package'
+author: 'Your Name'
+authorUrl: 'https://github.com/yourusername'
+tags: ['node.js', 'typescript', 'npm', 'template', 'package']
+lastUpdated: '2026-01-13'
 ---
 
 # Node Package Template
@@ -31,43 +31,29 @@ List the main technologies and tools used in the project:
 
 ```
 node-package-template/
-├── src/
+├── src/                      # Main TypeScript source code
 │   └── index.ts              # Main package entry point
-├── tests/
+├── tests/                    # Integration tests and test infrastructure
 │   └── index.test.ts         # Test suite
+├── .prettierignore           # Prettier ignore configuration
+├── .renovaterc               # Renovate bot configuration
+├── AGENTS.md                 # Agents instructions
 ├── build.config.ts           # Build configuration
 ├── eslint.config.js          # ESLint configuration
-├── prettier.config.js        # Prettier configuration
-├── vitest.config.ts          # Vitest configuration
-├── tsconfig.json             # TypeScript configuration
+├── LICENSE                   # Project license
 ├── package.json              # Package metadata and dependencies
 ├── pnpm-lock.yaml            # Dependency lock file
 ├── pnpm-workspace.yaml       # Workspace configuration
-├── LICENSE                   # Project license
-└── README.md                 # Project documentation
+├── prettier.config.js        # Prettier configuration
+├── README.md                 # Project documentation
+├── tsconfig.json             # TypeScript configuration
+└── vitest.config.ts          # Vitest configuration
 ```
 
-## Development Guidelines
+## Dev environment tips
 
-### Code Style
-
-- Use TypeScript for type safety
-- Follow ESLint rules defined in eslint.config.js
-- Format code with Prettier before committing
-- Keep code clean, readable, and maintainable
-
-### Naming Conventions
-
-- **File naming**: Use kebab-case for files (e.g., `util-functions.ts`)
-- **Variable naming**: Use camelCase (e.g., `const maxRetries = 5`)
-- **Function naming**: Use camelCase descriptive names (e.g., `async function fetchData()`)
-- **Class naming**: Use PascalCase (e.g., `class DataProcessor`)
-
-### Git Workflow
-
-- **Branch naming**: Use `feature/`, `fix/`, or `docs/` prefixes
-- **Commit message format**: Use conventional commits (e.g., `feat: add new feature`)
-- **Pull Request process**: Create PRs with clear descriptions and passing tests
+- This project uses pnpm as package manager.
+- Before you use the terminal, check the operating system and use the default terminal.
 
 ## Environment Setup
 
@@ -79,172 +65,73 @@ node-package-template/
 
 ### Installation Steps
 
-```bash
-# 1. Clone the project
-git clone https://github.com/yourusername/node-package-template.git
+- Run `pnpm install` to install dependencies.
+- Run `pnpm test` to to run tests.
+- Run `pnpm deps:update` to update dependencies.
+- Run `pnpm deps:verify` to verify the updated dependencies (if any).
 
-# 2. Navigate to project directory
-cd node-package-template
+## Testing instructions
 
-# 3. Install dependencies
-pnpm install
+- Find the CI plan in the .github/workflows folder.
+- Run `pnpm lint` and fix any remaining linting errors.
+- Run `pnpm format` to correct any formatting errors.
+- Run `pnpm typecheck` and fix all typing errors, if any.
+- Run `pnpm test` and fix any errors until the whole suite is green.
+- Run `pnpm coverage` and aim for at least 75% coverage.
+- After moving files or changing imports, run `pnpm lint` to be sure ESLint and TypeScript rules still pass.
+- Add or update tests for the code you change, even if nobody asked.
 
-# 4. Start development
-pnpm run dev
-```
+## Development Guidelines
 
-## Core Feature Implementation
+### Code Style
 
-### Main Export
+- Use TypeScript for type safety.
+- Follow ESLint rules defined in eslint.config.js.
+- Format code with Prettier before committing.
+- Keep code clean, readable, and maintainable.
+- Whenever possible, use in top-level scopes `export function x(…) {…}` instead of `export const x = (…) => {…}`. One advantage of using the `function` keyword is that the stack-trace shows a good name when debugging.
+- Use arrow functions `=>` over anonymous function expressions.
+- Do not use the optional-call operator `?.(`.
 
-The package exports functionality from `src/index.ts`. Implement your main features here:
+### Naming Conventions
 
-```typescript
-// src/index.ts
-export function greet(name: string): string {
-  return `Hello, ${name}!`;
-}
+- **File naming**: Use kebab-case for files (e.g., `util-functions.ts`).
+- **Variable naming**: Use camelCase (e.g., `const maxRetries = 5`).
+- **Function naming**: Use camelCase descriptive names (e.g., `async function fetchData()`).
+- **Class naming**: Use PascalCase (e.g., `class DataProcessor`).
 
-export const version = "1.0.0";
-```
+### Types
 
-### Module Organization
+- Do not export `types` or `functions` unless you need to share it across multiple components.
+- Do not introduce new `types` or `values` to the global namespace.
+- Do not use `enums`.
 
-Organize your package code into logical modules:
+### Comments
 
-- `src/utils/` - Utility functions
-- `src/types/` - TypeScript type definitions
-- `src/core/` - Core business logic
+- Use JSDoc style comments for `functions`, `interfaces`, and `classes`.
 
-## Testing Strategy
+## Code Quality
 
-### Unit Testing
+- Prefer regex capture groups with names over numbered capture groups.
+- If you create any temporary new files, scripts, or helper files for iteration, clean up these files by removing them at the end of the task.
+- Never duplicate imports. Always reuse existing imports if they are present.
+- Do not use `any` or `unknown` as the type for variables, parameters, or return values unless absolutely necessary. If they need type annotations, they should have proper types or interfaces defined.
+- Do not duplicate code. Always look for existing utility functions, helpers, or patterns in the codebase before implementing new functionality. Reuse and extend existing code whenever possible.
+- Don't add tests to the wrong test suite (e.g., adding to end of file instead of inside relevant suite).
+- Look for existing test patterns before creating new structures.
+- Use `describe-it` pattern consistently with existing patterns.
+- Use best practices as described in `./agents/testing-best-practices.md`.
 
-- **Testing framework**: Vitest
-- **Test coverage requirements**: Aim for 80%+ coverage
-- **Test file organization**: Collocate tests with source files using `.test.ts` suffix
+### Git Workflow
 
-```bash
-# Run tests
-pnpm run test
+- **Branch naming**: Use `feature/`, `fix/`, or `docs/` prefixes.
+- **Commit message format**: Use conventional commits (e.g., `feat: add new feature`).
+- **Pull Request process**: Create PRs with clear descriptions and passing tests.
 
-# Run tests with coverage
-pnpm run test:coverage
+## PR instructions
 
-# Watch mode
-pnpm run test:watch
-```
-
-### Integration Testing
-
-- Write tests that verify multiple modules work together
-- Test public API contracts
-- Mock external dependencies appropriately
-
-## Deployment Guide
-
-### Build Process
-
-```bash
-# Build the package
-pnpm run build
-```
-
-### Publishing Steps
-
-1. Update version in package.json following semantic versioning
-2. Update CHANGELOG
-3. Create a git tag matching the version
-4. Push changes and tag to main branch
-5. Publish to npm registry:
-   ```bash
-   pnpm publish
-   ```
-
-### Environment Variables
-
-Configure any required environment variables:
-
-```env
-# Example configuration
-NODE_ENV=development
-DEBUG=false
-```
-
-## Performance Optimization
-
-### Build Optimization
-
-- Use tree-shaking to minimize bundle size
-- Configure proper entry points in package.json
-- Consider using `exports` field for conditional exports
-
-### Code Optimization
-
-- Avoid synchronous operations in async functions
-- Use lazy loading for large dependencies
-- Profile code for memory leaks
-
-## Security Considerations
-
-### Data Security
-
-- Validate all user inputs
-- Avoid hardcoding sensitive information
-- Use environment variables for secrets
-
-### Package Security
-
-- Keep dependencies up to date: `pnpm outdated`
-- Audit for vulnerabilities: `pnpm audit`
-- Use npm provenance for published packages
-
-## Monitoring and Logging
-
-### Application Monitoring
-
-- Monitor package performance metrics
-- Track error rates in production
-- Use semantic versioning for breaking changes
-
-### Logging
-
-- Use structured logging for better debugging
-- Log important operations and errors
-- Configure appropriate log levels
-
-## Common Issues
-
-### Issue 1: TypeScript Compilation Errors
-
-**Solution**: Ensure your `tsconfig.json` is properly configured and all types are correctly imported. Run `pnpm run build` to check compilation.
-
-### Issue 2: Tests Failing After Updates
-
-**Solution**: Update test dependencies and check for breaking changes. Run `pnpm update` and review test output carefully.
-
-### Issue 3: Linting Errors on Commit
-
-**Solution**: Run `pnpm run lint:fix` to auto-fix linting issues before committing.
-
-## Reference Resources
-
-- [TypeScript Documentation](https://www.typescriptlang.org/)
-- [Vitest Documentation](https://vitest.dev/)
-- [ESLint Configuration Guide](https://eslint.org/docs/latest/use/configure/)
-- [NPM Package Publishing Guide](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
-- [Semantic Versioning](https://semver.org/)
-
-## Changelog
-
-### v1.0.0 (2026-01-12)
-
-- Initial release
-- TypeScript configuration
-- ESLint and Prettier setup
-- Vitest testing framework
-- Basic project structure
-
----
-
-**Note**: Customize this documentation with your specific project details, remove inapplicable sections, and add project-specific implementation details as needed.
+- Title format: [<project_name>] <Title>
+- Always run `pnpm validate` before committing.
+- Update the README.md.
+- Update this document.
+- Create, or update, the CHANGELOG.md with the changes that were made.
