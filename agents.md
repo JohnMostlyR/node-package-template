@@ -30,7 +30,7 @@ List the main technologies and tools used in the project:
 ## Project Structure
 
 ```
-node-package-template/
+/
 ├── src/                      # Main TypeScript source code
 │   └── index.ts              # Main package entry point
 ├── tests/                    # Integration tests and test infrastructure
