@@ -1,3 +1,12 @@
+---
+Original: 'javascript-testing-best-practices'
+description: '📗🌐 🚢 Comprehensive and exhaustive JavaScript & Node.js testing best practices (August 2025)'
+author: 'Yoni Goldberg'
+url: 'https://github.com/goldbergyoni/javascript-testing-best-practices'
+license: 'https://github.com/goldbergyoni/javascript-testing-best-practices/blob/master/LICENSE'
+lastUpdated: '2023-08-08'
+---
+
 # Testing Best Practices - Agent Guideline
 
 Quick reference for writing effective, maintainable tests. Keep tests simple, clear, and focused.
