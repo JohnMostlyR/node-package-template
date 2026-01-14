@@ -138,4 +138,4 @@ List the main technologies and tools used in the project:
 - Update the README.md.
 - Update this document.
 - Create, or update, the CHANGELOG.md with the changes that were made.
-- Bump the version in `package.json` with the appropriate semver: `major`, `minor` or `batch`.
+- Bump the version in `package.json` with the appropriate semver: `major`, `minor` or `patch`.
