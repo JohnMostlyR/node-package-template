@@ -1,6 +1,6 @@
 {
   "name": "node-package-template",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Template for creating a Node.js package.",
   "keywords": [
     "template",
