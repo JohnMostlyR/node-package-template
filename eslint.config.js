@@ -17,6 +17,7 @@ export const config = [
   includeIgnoreFile(GITIGNORE_PATH),
   sonarjs.configs.recommended,
   {
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {

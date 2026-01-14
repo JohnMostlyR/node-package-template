@@ -4,8 +4,8 @@ description: 'A modern Node.js package template with TypeScript, ESLint, Prettie
 category: 'Node.js Package'
 author: 'Your Name'
 authorUrl: 'https://github.com/yourusername'
-tags: ['node.js', 'typescript', 'npm', 'template', 'package']
-lastUpdated: '2026-01-13'
+tags: ['node.js', 'typescript', 'template', 'package']
+lastUpdated: '2026-01-14'
 ---
 
 # Node Package Template
@@ -120,13 +120,16 @@ List the main technologies and tools used in the project:
 - Don't add tests to the wrong test suite (e.g., adding to end of file instead of inside relevant suite).
 - Look for existing test patterns before creating new structures.
 - Use `describe-it` pattern consistently with existing patterns.
-- Use best practices as described in `./agents/testing-best-practices.md`.
+- **Important**: Use best practices as described in `.agents/testing-best-practices.md`.
+- If you need to create fixtures, install and use the latest version of `vitest-temporary-fixture`.
 
-### Git Workflow
+### Git Workflow Essentials
 
-- **Branch naming**: Use `feature/`, `fix/`, or `docs/` prefixes.
-- **Commit message format**: Use conventional commits (e.g., `feat: add new feature`).
-- **Pull Request process**: Create PRs with clear descriptions and passing tests.
+1. **Before creating a new branch**: Make sure we are on the `main` branch.
+2. **Get latest changes from origin**: Pull from `origin/main`, if there is one.
+3. **Branch naming**: Branch from `main` with a descriptive name: `feature/<slug>`, `fix/<slug>` or `docs/<slug>`.
+4. **Commit message format**: Use conventional commits (e.g., `feat: add new feature`).
+5. **Pull Request process**: Create PRs with clear descriptions and passing tests.
 
 ## PR instructions
 
@@ -135,3 +138,4 @@ List the main technologies and tools used in the project:
 - Update the README.md.
 - Update this document.
 - Create, or update, the CHANGELOG.md with the changes that were made.
+- Bump the version in `package.json` with the appropriate semver: `major`, `minor` or `patch`.
