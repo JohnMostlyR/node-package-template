@@ -9,15 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial project setup with TypeScript, ESLint, Prettier, and Vitest
-- Comprehensive configuration files for development tooling
-- Testing infrastructure with Vitest
-- Build configuration with build.config.ts
-- Workspace management with pnpm
+- `validateTypeScript()` utility function to test TypeScript transpilation and modern language features
+- `validateESLint()` utility function to validate ESLint linting functionality
+- `validatePrettier()` utility function to test code formatting capabilities
+- `validateRimraf()` utility function to verify rimraf CLI availability
+- `validateUnbuild()` utility function to verify unbuild CLI availability
+- Comprehensive test suite with 14 tests covering all installed dev dependencies
+- Dependency validation framework for testing major version updates safely
 
 ### Changed
 
 - Renamed `agents.md` to `AGENTS.md` for consistent naming convention
+- Updated `build.config.ts` to mark ESLint, Prettier, and TypeScript as external dependencies to prevent bundling and resolve unused import warnings
 
 ### Fixed
 
