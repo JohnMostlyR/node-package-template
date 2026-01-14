@@ -9,6 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-01-14
+
+### Added
+
+### Changed
+
+- Updated VS Code extensions recommendations by removing `gitlens` and `sqlite-viewer`
+- Enhanced VS Code settings with branch protection configuration for `main` branch with prompt to commit to new branch
+- Bumped version to 1.3.1
+
+### Fixed
+
+### Removed
+
+- Removed `eamodio.gitlens` from recommended VS Code extensions
+- Removed `qwtel.sqlite-viewer` from recommended VS Code extensions
+
+## [1.3.0] - 2026-01-14
+
+Initial release with comprehensive changelog tracking.
+
 ### Added
 
 - `validateTypeScript()` utility function to test TypeScript transpilation and modern language features
