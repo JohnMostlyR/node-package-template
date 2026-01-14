@@ -39,14 +39,15 @@ describe('node-package-template', () => {
   describe('ESLint dependency', () => {
     it('should lint JavaScript code', async () => {
       const code = 'const x = 1;';
-      const result = await validateESLint(code);
-      expect(result).toBe(true);
+      const messages = await validateESLint(code);
+      expect(messages).toHaveLength(0);
     });
 
     it('should detect linting issues', async () => {
       const code = 'const x = 1'; /* missing semicolon */
-      const result = await validateESLint(code);
-      expect(result).toBe(true);
+      const messages = await validateESLint(code);
+      expect(messages).toHaveLength(1);
+      expect(messages[0]?.ruleId).toBe('semi');
     });
   });
 
