@@ -42,6 +42,8 @@
   "explorer.fileNesting.patterns": {
     "package.json": "pnpm-workspace.yaml, pnpm-lock.yaml"
   },
+  "git.branchProtection": ["main"],
+  "git.branchProtectionPrompt": "alwaysCommitToNewBranch",
   "npm.packageManager": "pnpm",
   "search.exclude": {
     "pnpm-lock.yaml": true
