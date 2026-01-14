@@ -3,4 +3,5 @@ import { defineBuildConfig } from 'unbuild';
 export default defineBuildConfig({
   failOnWarn: false,
   sourcemap: true,
+  externals: ['eslint', 'prettier', 'typescript'],
 });
