@@ -14,20 +14,28 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node: [22, 24]
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
 
-      - uses: actions/setup-node@v4
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ matrix.node }}
           registry-url: "https://registry.npmjs.org"
           cache: "pnpm"
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Create release PR or publish
         uses: changesets/action@v1
