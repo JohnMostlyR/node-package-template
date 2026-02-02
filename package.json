@@ -52,6 +52,7 @@
     "validate": "pnpm lint && pnpm format && pnpm typecheck && pnpm coverage && pnpm build"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@eslint/compat": "^2.0.2",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@types/node": "^24.10.9",
