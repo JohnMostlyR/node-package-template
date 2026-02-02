@@ -1,0 +1,188 @@
+version: 2
+
+# QUARTERLY REVIEW REMINDER (every 3 months)
+# This configuration should be reviewed for:
+# - Deprecated dependencies that can now be removed
+# - New high-risk packages to add to ignore list
+# - Changes in project dependencies
+# - Update schedule effectiveness
+# Last reviewed: 2026-02-02
+
+updates:
+  # ============================================================================
+  # NPM PRODUCTION DEPENDENCIES - Standard Updates
+  # ============================================================================
+  # Regular version updates for production dependencies
+  # Grouped by dependency type for easier review and testing
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "03:00"
+      timezone: Etc/UTC
+    # Group production dependencies together
+    groups:
+      production:
+        dependency-type: production
+        update-types:
+          - "minor"
+          - "patch"
+      production-major:
+        dependency-type: production
+        update-types:
+          - "major"
+    labels:
+      - "dependencies"
+      - "npm"
+    assignees:
+      - "JohnMostlyR"
+    allow:
+      - dependency-type: "production"
+    ignore: []
+    commit-message:
+      prefix: "chore(deps):"
+      include: "scope"
+    pull-request-branch-name:
+      separator: "/"
+
+  # ============================================================================
+  # NPM DEVELOPMENT DEPENDENCIES - Standard Updates
+  # ============================================================================
+  # Development dependencies: less critical but need monitoring
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "04:00"
+      timezone: Etc/UTC
+    # Group dev dependencies separately
+    groups:
+      dev-dependencies:
+        dependency-type: development
+        update-types:
+          - "minor"
+          - "patch"
+      dev-major:
+        dependency-type: development
+        update-types:
+          - "major"
+    labels:
+      - "dependencies"
+      - "npm"
+      - "dev-dependencies"
+    assignees:
+      - "JohnMostlyR"
+    allow:
+      - dependency-type: "development"
+    ignore: []
+    commit-message:
+      prefix: "chore(deps-dev):"
+      include: "scope"
+    pull-request-branch-name:
+      separator: "/"
+
+  # ============================================================================
+  # NPM SECURITY UPDATES - Priority
+  # ============================================================================
+  # Security vulnerabilities get immediate attention
+  # Separate configuration for faster processing
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+      timezone: Etc/UTC
+    # Security updates run earliest and most frequently
+    groups:
+      security-updates:
+        patterns:
+          - "*"
+        applies-to: security-updates
+    labels:
+      - "security"
+      - "critical"
+      - "npm"
+    assignees:
+      - "JohnMostlyR"
+    ignore: []
+    commit-message:
+      prefix: "security:"
+      include: "scope"
+
+  # ============================================================================
+  # GITHUB ACTIONS - Standard Updates
+  # ============================================================================
+  # Maintain up-to-date actions and workflows
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: "03:00"
+      timezone: Etc/UTC
+    groups:
+      actions:
+        update-types:
+          - "minor"
+          - "patch"
+      actions-major:
+        update-types:
+          - "major"
+    labels:
+      - "ci/cd"
+      - "github-actions"
+    assignees:
+      - "JohnMostlyR"
+    ignore: []
+    commit-message:
+      prefix: "ci(actions):"
+      include: "scope"
+
+# ============================================================================
+# CONFIGURATION NOTES
+# ============================================================================
+#
+# GROUPING STRATEGY:
+# - Production and dev dependencies are handled separately for clarity
+# - Majors are grouped separately to highlight breaking changes
+# - Security updates use 'applies-to: security-updates' to filter only vulnerabilities
+#
+# SCHEDULE RATIONALE:
+# - Production: Monday 03:00 UTC
+# - Dev dependencies: Monday 04:00 UTC
+# - Security updates: Daily (for immediate vulnerability response)
+# - Actions: Tuesday 03:00 UTC
+# - Avoids collision with typical CI/CD peak times
+#
+# AUTO-MERGE POLICY:
+# - Security: Not enabled (requires careful review even for patches)
+# - Dev dependencies: Removed (requires manual review for consistency)
+# - Production: Manual review required for all updates
+# - Actions: Manual review required for all updates
+#
+# IGNORED DEPENDENCIES:
+# Add packages to 'ignore' lists when they:
+# - Require complex migrations
+# - Have breaking changes that don't follow semver
+# - Cause repeated CI failures unrelated to the dependency
+# - Have known compatibility issues with your Node version
+#
+# CI RELIABILITY:
+# This configuration assumes:
+# - All PRs run the full test suite
+# - Linting and type checks are part of CI
+# - Coverage checks are included
+# - Review is fast (< 1 business day typical)
+#
+# TIMEZONE:
+# The timezone uses IANA format (Etc/UTC). Common alternatives:
+# - Europe/Amsterdam, America/New_York, Asia/Tokyo, Australia/Sydney
+#
+# QUARTERLY REVIEW CHECKLIST:
+# 1. Remove dependencies from ignore lists if issues are resolved
+# 2. Add new high-risk packages if discovered
+# 3. Verify schedule is not causing CI bottlenecks
+# 4. Check if update frequency is appropriate
+# 5. Review any security vulnerabilities that were missed
+# 6. Update this file's "Last reviewed" date
