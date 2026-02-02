@@ -49,7 +49,7 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "validate": "pnpm lint && pnpm format && pnpm typecheck && pnpm test"
+    "validate": "pnpm lint && pnpm format && pnpm typecheck && pnpm coverage && pnpm build"
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.2",
