@@ -1,14 +1,4 @@
----
-name: 'Node Package Template'
-description: 'A modern Node.js package template with TypeScript, ESLint, Prettier, and Vitest. Designed for building scalable and maintainable npm packages.'
-category: 'Node.js Package'
-author: 'Your Name'
-authorUrl: 'https://github.com/yourusername'
-tags: ['node.js', 'typescript', 'template', 'package']
-lastUpdated: '2026-01-14'
----
-
-# Node Package Template
+# AGENTS.md for node-package-template
 
 ## Project Overview
 
@@ -27,115 +17,121 @@ List the main technologies and tools used in the project:
 - **Build**: Build Config (build.config.ts)
 - **Other Tools**: Workspace management (pnpm-workspace.yaml)
 
+## Commands
+
+- `pnpm build` - Build
+- `pnpm clean` - Remove untracked files and directories
+- `pnpm coverage` - Code coverage
+- `pnpm format` - Format code
+- `pnpm lint` - Lint & fix
+- `pnpm test` - Run tests
+- `pnpm test:watch` - Watch mode
+- `pnpm typecheck` - Type check
+- `pnpm validate` - All checks
+
 ## Project Structure
 
-```
-/
-├── src/                      # Main TypeScript source code
-│   └── index.ts              # Main package entry point
-├── tests/                    # Integration tests and test infrastructure
-│   └── index.test.ts         # Test suite
-├── .prettierignore           # Prettier ignore configuration
-├── .renovaterc               # Renovate bot configuration
-├── AGENTS.md                 # Agents instructions
-├── build.config.ts           # Build configuration
-├── eslint.config.js          # ESLint configuration
-├── LICENSE                   # Project license
-├── package.json              # Package metadata and dependencies
-├── pnpm-lock.yaml            # Dependency lock file
-├── pnpm-workspace.yaml       # Workspace configuration
-├── prettier.config.js        # Prettier configuration
-├── README.md                 # Project documentation
-├── tsconfig.json             # TypeScript configuration
-└── vitest.config.ts          # Vitest configuration
-```
+- `src/` - Main TypeScript source code
+- `tests/` - Integration tests and test infrastructure
 
-## Dev environment tips
+## General Coding Rules
 
-- This project uses pnpm as package manager.
-- Before you use the terminal, check the operating system and use the default terminal.
+**IMPORTANT:**
 
-## Environment Setup
+- Prefer **explicit, readable code** over clever abstractions
+- Avoid unnecessary dependencies
+- Do not introduce breaking changes without documentation
+- New code must be [tested](#testing)
+- Do not modify public APIs without updating:
+  - Types
+  - Tests
+  - Relevant documentation (e.g. `JSDoc`, `README.md`, `AGENTS.md`)
+- **[VALIDATION CHECKPOINT]** After creating, or making changes to, any code...
+  - Run `pnpm lint` and fix any errors until all errors are resolved
+  - Run `pnpm format`
+  - Run `pnpm typecheck` and fix any errors until all errors are resolved
+  - Run `pnpm test` and fix any errors until the whole suite is green
+  - Run `pnpm coverage` and and aim for 80%+ coverage
+  - Repeat all these steps until all issues are solved
+- **[DOCUMENT CHECKPOINT]** After creating, or making changes to, any code...
+  - Update README.md
+  - Update AGENTS.md
+- **[CLEANUP CHECKPOINT]** Before completing any task, delete all temporary files you created
+  - Any file created for debugging, testing, or investigation purposes
+  - Examples: `test-output.txt`, `debug.log`, `*.temp`, `*.tmp`, `scratch.*`, helper scripts
+  - Check both root and subdirectories (packages/_, apps/_, tooling/\*)
+  - Files used for investigation but not part of the codebase
+  - Use `file_search` to verify no temporary files remain before task completion
 
-### Development Requirements
+---
 
-- Node.js: Latest LTS version (v18 or higher recommended)
-- Package manager: PNPM (v8 or higher)
-- Operating System: Cross-platform (Windows, macOS, Linux)
+## TypeScript Conventions
 
-### Installation Steps
+- Prefer interfaces/types already defined in shared packages
+- Export types explicitly
+- Put shared types in a separate `types.ts`
 
-- Run `pnpm install` to install dependencies.
-- Run `pnpm test` to to run tests.
-- Run `pnpm deps:update` to update dependencies.
-- Run `pnpm deps:verify` to verify the updated dependencies (if any).
+---
 
-## Testing instructions
+## Testing
 
-- Find the CI plan in the .github/workflows folder.
-- Run `pnpm lint` and fix any remaining linting errors.
-- Run `pnpm format` to correct any formatting errors.
-- Run `pnpm typecheck` and fix all typing errors, if any.
-- Run `pnpm test` and fix any errors until the whole suite is green.
-- Run `pnpm coverage` and aim for at least 75% coverage.
-- After moving files or changing imports, run `pnpm lint` to be sure ESLint and TypeScript rules still pass.
-- Add or update tests for the code you change, even if nobody asked.
+**IMPORTANT:**
 
-## Development Guidelines
+- Never run Vitest with the option `--passWithNoTests` or `--pass-with-no-tests`
+- Use best practices as described in `.agents/docs/testing-best-practices.md`!.
+- New behavior should include tests where practical
+- Do not delete tests unless the behavior is removed intentionally
+- Keep tests deterministic and isolated
+- Use the `describe-it` pattern consistently with existing patterns.
+- The name of a test must start with 'should' so it reeds like it-should
+- Do not add tests to the wrong test suite (e.g., adding to end of file instead of inside relevant suite).
 
-### Code Style
+---
 
-- Use TypeScript for type safety.
-- Follow ESLint rules defined in eslint.config.js.
-- Format code with Prettier before committing.
-- Keep code clean, readable, and maintainable.
-- Whenever possible, use in top-level scopes `export function x(…) {…}` instead of `export const x = (…) => {…}`. One advantage of using the `function` keyword is that the stack-trace shows a good name when debugging.
-- Use arrow functions `=>` over anonymous function expressions.
-- Do not use the optional-call operator `?.(`.
+## Documenting
 
-### Naming Conventions
-
-- **File naming**: Use kebab-case for files (e.g., `util-functions.ts`).
-- **Variable naming**: Use camelCase (e.g., `const maxRetries = 5`).
-- **Function naming**: Use camelCase descriptive names (e.g., `async function fetchData()`).
-- **Class naming**: Use PascalCase (e.g., `class DataProcessor`).
-
-### Types
-
-- Do not export `types` or `functions` unless you need to share it across multiple components.
-- Do not introduce new `types` or `values` to the global namespace.
-- Do not use `enums`.
+- Avoid the use of abbreviations, _unless_ commonly used by the intended audience
 
 ### Comments
 
 - Use JSDoc style comments for `functions`, `interfaces`, and `classes`.
 
-## Code Quality
+### Common rules for markdown and JSDoc
 
-- Prefer regex capture groups with names over numbered capture groups.
-- If you create any temporary new files, scripts, or helper files for iteration, clean up these files by removing them at the end of the task.
-- Never duplicate imports. Always reuse existing imports if they are present.
-- Do not use `any` or `unknown` as the type for variables, parameters, or return values unless absolutely necessary. If they need type annotations, they should have proper types or interfaces defined.
-- Do not duplicate code. Always look for existing utility functions, helpers, or patterns in the codebase before implementing new functionality. Reuse and extend existing code whenever possible.
-- Don't add tests to the wrong test suite (e.g., adding to end of file instead of inside relevant suite).
-- Look for existing test patterns before creating new structures.
-- Use `describe-it` pattern consistently with existing patterns.
-- **Important**: Use best practices as described in `.agents/testing-best-practices.md`.
-- If you need to create fixtures, install and use the latest version of `vitest-temporary-fixture`.
+- Use `shell` for example code that runs in the command-line interface.
 
-### Git Workflow Essentials
+  Example:
 
-1. **Before creating a new branch**: Make sure we are on the `main` branch.
-2. **Get latest changes from origin**: Pull from `origin/main`, if there is one.
-3. **Branch naming**: Branch from `main` with a descriptive name: `feature/<slug>`, `fix/<slug>` or `docs/<slug>`.
-4. **Commit message format**: Use conventional commits (e.g., `feat: add new feature`).
-5. **Pull Request process**: Create PRs with clear descriptions and passing tests.
+  ```shell
+  pnpm add -D prettier
+  ```
 
-## PR instructions
+- Do not sound like a salesman by avoiding words like 'comprehensive' and 'powered' as much as possible.
 
-- Title format: [<project_name>] <Title>
-- Always run `pnpm validate` before committing.
-- Update the README.md.
-- Update this document.
-- Create, or update, the CHANGELOG.md with the changes that were made.
-- Bump the version in `package.json` with the appropriate semver: `major`, `minor` or `patch`.
+---
+
+## Versioning & Changes
+
+- Follow semantic versioning for packages
+- Update changelogs or release notes when required
+- Avoid combining unrelated changes in a single commit
+
+---
+
+## Safety Rules for Automated Changes
+
+Automated agents must:
+
+- Make the smallest possible change to achieve the goal
+- Avoid large refactors unless explicitly requested
+- Never remove code without understanding its usage
+- Preserve backward compatibility unless instructed otherwise
+- Never loosen or override any rules as stated in `eslint.config.js`
+- Prevent the need to loosen or override any linting rule with directives.
+  Common exceptions are:
+  - The use of the `any` type were it is common (e.g. `chunks` in streams)
+  - The `max-param` rule where it would otherwise make the code less readable
+  - Too expensive to change in an older codebase
+- Never loosen any rules as stated in `tsconfig.json` **without** asking
+
+If uncertain, **stop and ask for clarification**.
