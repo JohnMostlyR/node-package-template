@@ -7,28 +7,21 @@ jobs:
   check:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node: [22, 24]
-
     if: github.actor != 'dependabot[bot]'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.head_ref }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
 
-      - name: Use Node.js ${{ matrix.node }}
+      - name: Use Node.js 24
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 24
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
