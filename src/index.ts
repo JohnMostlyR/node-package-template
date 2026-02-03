@@ -35,7 +35,7 @@ export async function validateTypeScript(code: string): Promise<boolean> {
  */
 export async function validateESLint(
   code: string,
-): Promise<Array<{ ruleId: string | null; message: string }>> {
+): Promise<{ ruleId: string | null; message: string }[]> {
   const eslint = new ESLint({
     overrideConfigFile: true,
     overrideConfig: {

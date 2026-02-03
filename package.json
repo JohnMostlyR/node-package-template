@@ -49,21 +49,22 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "validate": "pnpm lint && pnpm format && pnpm typecheck && pnpm test"
+    "validate": "pnpm lint && pnpm format && pnpm typecheck && pnpm coverage && pnpm build"
   },
   "devDependencies": {
-    "@eslint/compat": "^2.0.1",
+    "@changesets/cli": "^2.29.8",
+    "@eslint/compat": "^2.0.2",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
-    "@types/node": "^24.10.8",
-    "@vitest/coverage-v8": "^4.0.17",
+    "@types/node": "^24.10.9",
+    "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9.39.2",
-    "eslint-plugin-consistent-comments": "^1.4.3",
-    "eslint-plugin-sonarjs": "^3.0.5",
-    "prettier": "^3.7.4",
+    "eslint-plugin-consistent-comments": "^1.4.4",
+    "eslint-plugin-sonarjs": "^3.0.6",
+    "prettier": "^3.8.1",
     "rimraf": "^6.1.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.53.0",
+    "typescript-eslint": "^8.54.0",
     "unbuild": "^3.6.1",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.18"
   }
 }
