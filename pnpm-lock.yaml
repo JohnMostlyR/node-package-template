@@ -27,8 +27,8 @@ importers:
         specifier: ^9.39.4
         version: 9.39.4(jiti@2.6.1)
       eslint-plugin-consistent-comments:
-        specifier: ^1.4.4
-        version: 1.4.4(eslint@9.39.4(jiti@2.6.1))
+        specifier: ^1.5.1
+        version: 1.5.1(eslint@9.39.4(jiti@2.6.1))
       eslint-plugin-sonarjs:
         specifier: ^3.0.7
         version: 3.0.7(eslint@9.39.4(jiti@2.6.1))
@@ -1304,10 +1304,10 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
-  eslint-plugin-consistent-comments@1.4.4:
-    resolution: {integrity: sha512-wxemIaeNGGLiFTqLriZPQGxZUXn7QYlaCzOBrT5JT65NtEuPCSAy5gf2hKrHhYnVFLdWYiCwWi9YuWW92M7xQg==}
+  eslint-plugin-consistent-comments@1.5.1:
+    resolution: {integrity: sha512-ICkfpP3gW2bbRQ9c/EZPrONtntrfE4j6MhazOU8SbUowP4uSRv40hx2hPOaKj5gMnJWceaP4iOFuT5DrZWFZWg==}
     peerDependencies:
-      eslint: '>=9.0.0'
+      eslint: ^9.0.0
 
   eslint-plugin-sonarjs@3.0.7:
     resolution: {integrity: sha512-62jB20krIPvcwBLAyG3VVKa2ce2j2lL1yCb8Y0ylMRR/dLvCCTiQx8gQbXb+G81k1alPZ2/I3muZinqWQdBbzw==}
@@ -3527,7 +3527,7 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-plugin-consistent-comments@1.4.4(eslint@9.39.4(jiti@2.6.1)):
+  eslint-plugin-consistent-comments@1.5.1(eslint@9.39.4(jiti@2.6.1)):
     dependencies:
       eslint: 9.39.4(jiti@2.6.1)
 
