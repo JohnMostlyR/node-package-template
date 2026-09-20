@@ -16,7 +16,7 @@ importers:
         version: 2.1.1(eslint@9.39.4(jiti@2.6.1)(supports-color@7.2.0))
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.7.1
-        version: 4.7.1(prettier@3.9.6)(supports-color@7.2.0)
+        version: 4.7.1(prettier@3.9.7)(supports-color@7.2.0)
       '@types/node':
         specifier: ^24.12.2
         version: 24.12.2
@@ -33,8 +33,8 @@ importers:
         specifier: ^3.0.7
         version: 3.0.7(eslint@9.39.4(jiti@2.6.1)(supports-color@7.2.0))
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.7
+        version: 3.9.7
       rimraf:
         specifier: ^6.1.3
         version: 6.1.3
@@ -2072,8 +2072,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.9.6:
-    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
+  prettier@3.9.7:
+    resolution: {integrity: sha512-T3mF5P7HFzZVLDQuCUNtJj6WK1pcpLMweMNUVwGb01bLNkH9AkKxtZvmInw8K6bnn2O3d6/5RHl6zSHiBAD0Og==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2850,13 +2850,13 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.9.6)(supports-color@7.2.0)':
+  '@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.9.7)(supports-color@7.2.0)':
     dependencies:
       '@babel/generator': 7.28.6
       '@babel/parser': 7.28.6
       '@babel/traverse': 7.28.6(supports-color@7.2.0)
       '@babel/types': 7.28.6
-      prettier: 3.9.6
+      prettier: 3.9.7
       semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
@@ -4291,7 +4291,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.9.6: {}
+  prettier@3.9.7: {}
 
   pretty-bytes@7.1.0: {}
 
